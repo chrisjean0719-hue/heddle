@@ -1,0 +1,9 @@
+{
+  "name": "Sample scarf",
+  "yarn": "8/2 cotton",
+  "widthIn": 10,
+  "epi": 24,
+  "lengthIn": 72,
+  "loomWasteIn": 27,
+  "shafts": 4
+}

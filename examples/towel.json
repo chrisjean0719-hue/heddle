@@ -1,0 +1,9 @@
+{
+  "name": "Sample towel",
+  "yarn": "8/4 cotton",
+  "widthIn": 18,
+  "epi": 12,
+  "lengthIn": 36,
+  "loomWasteIn": 24,
+  "shafts": 4
+}

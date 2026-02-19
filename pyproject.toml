@@ -1,0 +1,11 @@
+[project]
+name = "heddle"
+version = "0.1.0"
+description = "Plan a handloom warp from cloth width, sett, and yarn"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Christopher" }]
+
+[project.scripts]
+heddle = "heddle.__main__:main"
