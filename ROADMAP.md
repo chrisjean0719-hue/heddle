@@ -1,12 +1,8 @@
 # Roadmap
 
-Heddle plans warp ends, yarn length, and a reed for a handloom cloth. This is the first of six updates. About 38 hours of later work stay after those six.
+Heddle plans warp ends, yarn length, a reed, and a straight or point threading. This is the second of six updates. About 38 hours of later work stay after those six.
 
 ## Still in the six updates
-
-### Threading (update 2)
-
-Write a straight draw and a point draw across the shafts in the project.
 
 ### Tie-up and treadling (update 3)
 
@@ -72,4 +68,4 @@ Fail the plan when the end count is not a whole number of threading repeats, plu
 
 Offer front-to-back and back-to-front loom waste amounts, and show which one the plan used.
 
-The threading draft is the next piece. The plan counts ends and shafts, and it does not yet say which shaft each end uses.
+The tie-up is the next piece. The plan threads each end, and it does not yet say which shafts rise for each pick.

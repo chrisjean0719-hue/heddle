@@ -43,4 +43,8 @@ def validate_project(project):
     if not isinstance(shafts, int) or isinstance(shafts, bool) or shafts < 2 or shafts > 16:
         errors.append("shafts: shafts must be an integer from 2 to 16")
 
+    threading = project.get("threading", "straight")
+    if threading not in ("straight", "point"):
+        errors.append("threading: threading must be straight or point")
+
     return errors

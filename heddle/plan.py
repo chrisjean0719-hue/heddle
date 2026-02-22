@@ -1,6 +1,7 @@
 """Build a warp plan from a project object."""
 
 from heddle.reed import reed_choices
+from heddle.threading import thread_ends
 from heddle.validate import validate_project
 from heddle.warp import end_count, inches_per_end, odd_end_warning, pounds, sett_warning, warp_yards
 from heddle.yarns import lookup_yarn
@@ -41,5 +42,6 @@ def plan_warp(project):
         "pounds": pounds(yards, yarn["yards_per_pound"]),
         "reeds": reed_choices(project["epi"]),
         "shafts": project["shafts"],
+        "threading": thread_ends(ends, project["shafts"], project.get("threading", "straight")),
         "warnings": warnings,
     }

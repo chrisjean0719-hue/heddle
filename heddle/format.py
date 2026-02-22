@@ -10,6 +10,20 @@ def _trim(number):
     return text
 
 
+def _format_threading(threading):
+    repeat = " ".join(str(shaft) for shaft in threading["repeat"])
+    if threading["remainder"]:
+        remainder = " ".join(str(shaft) for shaft in threading["remainder"])
+    else:
+        remainder = "none"
+    return [
+        f"threading: {threading['kind']}",
+        f"repeat: {repeat}",
+        f"repeats: {threading['repeats']}",
+        f"remainder: {remainder}",
+    ]
+
+
 def format_plan(plan):
     lines = [
         plan["name"],
@@ -34,6 +48,7 @@ def format_plan(plan):
     else:
         lines.append("reed: none of the common reeds divide this sett evenly")
     lines.append(f"shafts: {plan['shafts']}")
+    lines.extend(_format_threading(plan["threading"]))
     for warning in plan["warnings"]:
         lines.append(f"warning: {warning}")
     return "\n".join(lines)
