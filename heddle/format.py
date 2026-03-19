@@ -24,6 +24,21 @@ def _format_threading(threading):
     ]
 
 
+def _shafts(numbers):
+    return " ".join(str(number) for number in numbers)
+
+
+def _format_draft(draft):
+    lines = [f"weave: {draft['weave']}", "tie-up:"]
+    for index, row in enumerate(draft["tie_up"], start=1):
+        lines.append(f"  treadle {index}: {_shafts(row)}")
+    lines.append(f"treadling: {_shafts(draft['treadling'])}")
+    lines.append("lifts:")
+    for index, lift in enumerate(draft["lifts"], start=1):
+        lines.append(f"  pick {index}: {_shafts(lift)}")
+    return lines
+
+
 def format_plan(plan):
     lines = [
         plan["name"],
@@ -49,6 +64,7 @@ def format_plan(plan):
         lines.append("reed: none of the common reeds divide this sett evenly")
     lines.append(f"shafts: {plan['shafts']}")
     lines.extend(_format_threading(plan["threading"]))
+    lines.extend(_format_draft(plan["draft"]))
     for warning in plan["warnings"]:
         lines.append(f"warning: {warning}")
     return "\n".join(lines)

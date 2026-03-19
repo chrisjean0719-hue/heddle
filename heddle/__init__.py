@@ -1,7 +1,8 @@
 """Plan a handloom warp from cloth width, sett, and yarn."""
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
+from heddle.draft import draft, plain_tie_up, twill_tie_up
 from heddle.format import format_plan
 from heddle.plan import plan_warp
 from heddle.reed import reed_choices
@@ -10,15 +11,18 @@ from heddle.warp import end_count, pounds, warp_yards
 from heddle.yarns import lookup_yarn, yarn_names
 
 __all__ = [
+    "draft",
     "end_count",
     "format_plan",
     "lookup_yarn",
+    "plain_tie_up",
     "plan_warp",
     "point_repeat",
     "pounds",
     "reed_choices",
     "straight_repeat",
     "thread_ends",
+    "twill_tie_up",
     "warp_yards",
     "yarn_names",
 ]

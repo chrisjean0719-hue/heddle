@@ -1,5 +1,6 @@
 """Build a warp plan from a project object."""
 
+from heddle.draft import draft, odd_plain_warning
 from heddle.reed import reed_choices
 from heddle.threading import thread_ends
 from heddle.validate import validate_project
@@ -28,6 +29,10 @@ def plan_warp(project):
     odd = odd_end_warning(ends)
     if odd:
         warnings.append(odd)
+    weave = project.get("weave", "plain")
+    shed = odd_plain_warning(project["shafts"], weave)
+    if shed:
+        warnings.append(shed)
 
     return {
         "name": project["name"].strip(),
@@ -43,5 +48,6 @@ def plan_warp(project):
         "reeds": reed_choices(project["epi"]),
         "shafts": project["shafts"],
         "threading": thread_ends(ends, project["shafts"], project.get("threading", "straight")),
+        "draft": draft(project["shafts"], weave),
         "warnings": warnings,
     }

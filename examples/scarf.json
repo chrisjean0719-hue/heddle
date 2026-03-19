@@ -6,5 +6,6 @@
   "lengthIn": 72,
   "loomWasteIn": 27,
   "shafts": 4,
-  "threading": "straight"
+  "threading": "straight",
+  "weave": "plain"
 }

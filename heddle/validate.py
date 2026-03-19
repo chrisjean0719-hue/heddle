@@ -47,4 +47,10 @@ def validate_project(project):
     if threading not in ("straight", "point"):
         errors.append("threading: threading must be straight or point")
 
+    weave = project.get("weave", "plain")
+    if weave not in ("plain", "twill"):
+        errors.append("weave: weave must be plain or twill")
+    elif weave == "twill" and isinstance(shafts, int) and not isinstance(shafts, bool) and shafts < 4:
+        errors.append("weave: a 2/2 twill needs at least 4 shafts")
+
     return errors

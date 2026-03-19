@@ -1,12 +1,8 @@
 # Roadmap
 
-Heddle plans warp ends, yarn length, a reed, and a straight or point threading. This is the second of six updates. About 38 hours of later work stay after those six.
+Heddle plans warp ends, yarn length, a reed, a straight or point threading, and a plain-weave or 2/2 twill tie-up. This is the third of six updates. About 38 hours of later work stay after those six.
 
 ## Still in the six updates
-
-### Tie-up and treadling (update 3)
-
-Add a plain-weave and a 2/2 twill tie-up, and print the lift for each pick.
 
 ### Take-up and shrinkage (update 4)
 
@@ -68,4 +64,4 @@ Fail the plan when the end count is not a whole number of threading repeats, plu
 
 Offer front-to-back and back-to-front loom waste amounts, and show which one the plan used.
 
-The tie-up is the next piece. The plan threads each end, and it does not yet say which shafts rise for each pick.
+Shrinkage is the next piece. The plan names the shafts that rise, and it does not yet turn the on-loom size into a finished size.

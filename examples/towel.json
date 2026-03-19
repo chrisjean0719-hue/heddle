@@ -6,5 +6,6 @@
   "lengthIn": 36,
   "loomWasteIn": 24,
   "shafts": 4,
-  "threading": "point"
+  "threading": "point",
+  "weave": "twill"
 }
