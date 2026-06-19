@@ -7,5 +7,7 @@
   "loomWasteIn": 27,
   "shafts": 4,
   "threading": "straight",
-  "weave": "plain"
+  "weave": "plain",
+  "takeUp": { "width": 10, "length": 10 },
+  "shrinkage": { "width": 10, "length": 10 }
 }

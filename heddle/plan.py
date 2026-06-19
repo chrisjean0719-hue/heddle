@@ -2,6 +2,7 @@
 
 from heddle.draft import draft, odd_plain_warning
 from heddle.reed import reed_choices
+from heddle.shrink import finished_cloth, half_size_warning
 from heddle.threading import thread_ends
 from heddle.validate import validate_project
 from heddle.warp import end_count, inches_per_end, odd_end_warning, pounds, sett_warning, warp_yards
@@ -33,6 +34,16 @@ def plan_warp(project):
     shed = odd_plain_warning(project["shafts"], weave)
     if shed:
         warnings.append(shed)
+    take_up = _rates(project, "takeUp")
+    shrinkage = _rates(project, "shrinkage")
+    finished = finished_cloth(project["widthIn"], project["lengthIn"], take_up, shrinkage)
+    for axis, on_loom, done in (
+        ("width", project["widthIn"], finished["width_in"]),
+        ("length", project["lengthIn"], finished["length_in"]),
+    ):
+        small = half_size_warning(on_loom, done, axis)
+        if small:
+            warnings.append(small)
 
     return {
         "name": project["name"].strip(),
@@ -49,5 +60,11 @@ def plan_warp(project):
         "shafts": project["shafts"],
         "threading": thread_ends(ends, project["shafts"], project.get("threading", "straight")),
         "draft": draft(project["shafts"], weave),
+        "finished": finished,
         "warnings": warnings,
     }
+
+
+def _rates(project, field):
+    value = project.get(field, {})
+    return {"width": value.get("width", 0), "length": value.get("length", 0)}

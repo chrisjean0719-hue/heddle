@@ -10,6 +10,25 @@ def _trim(number):
     return text
 
 
+def _format_finished(finished):
+    return "\n".join(
+        [
+            (
+                f"take-up: {_trim(finished['take_up']['width'])}% width, "
+                f"{_trim(finished['take_up']['length'])}% length"
+            ),
+            (
+                f"shrinkage: {_trim(finished['shrinkage']['width'])}% width, "
+                f"{_trim(finished['shrinkage']['length'])}% length"
+            ),
+            (
+                f"finished: {_trim(finished['width_in'])} in wide, "
+                f"{_trim(finished['length_in'])} in long"
+            ),
+        ]
+    )
+
+
 def _format_threading(threading):
     repeat = " ".join(str(shaft) for shaft in threading["repeat"])
     if threading["remainder"]:
@@ -47,6 +66,7 @@ def format_plan(plan):
             f"cloth: {_trim(plan['width_in'])} in wide, "
             f"{_trim(plan['length_in'])} in long, {plan['epi']} epi"
         ),
+        _format_finished(plan["finished"]),
         f"ends: {plan['ends']}",
         (
             f"warp: {_trim(plan['inches_per_end'])} in per end, "

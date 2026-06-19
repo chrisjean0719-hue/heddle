@@ -7,5 +7,7 @@
   "loomWasteIn": 24,
   "shafts": 4,
   "threading": "point",
-  "weave": "twill"
+  "weave": "twill",
+  "takeUp": { "width": 5, "length": 5 },
+  "shrinkage": { "width": 10, "length": 15 }
 }

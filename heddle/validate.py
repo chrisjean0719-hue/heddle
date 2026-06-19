@@ -53,4 +53,27 @@ def validate_project(project):
     elif weave == "twill" and isinstance(shafts, int) and not isinstance(shafts, bool) and shafts < 4:
         errors.append("weave: a 2/2 twill needs at least 4 shafts")
 
+    for field in ("takeUp", "shrinkage"):
+        errors.extend(_percent_pair(project, field))
+
+    return errors
+
+
+def _percent_pair(project, field):
+    if field not in project:
+        return []
+    value = project[field]
+    if not isinstance(value, dict):
+        return [f"{field}: {field} needs width and length percents"]
+    errors = []
+    for axis in ("width", "length"):
+        percent = value.get(axis)
+        if (
+            not isinstance(percent, (int, float))
+            or isinstance(percent, bool)
+            or not math.isfinite(percent)
+            or percent < 0
+            or percent >= 100
+        ):
+            errors.append(f"{field}.{axis}: {field}.{axis} must be a percent from 0 up to, but not including, 100")
     return errors

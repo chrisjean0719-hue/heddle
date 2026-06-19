@@ -1,7 +1,7 @@
 [project]
 name = "heddle"
-version = "0.3.0"
-description = "Plan a handloom warp, its threading, and a plain or twill tie-up"
+version = "0.4.0"
+description = "Plan a handloom warp and its finished size after take-up and shrinkage"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
