@@ -85,6 +85,8 @@ def format_plan(plan):
     lines.append(f"shafts: {plan['shafts']}")
     lines.extend(_format_threading(plan["threading"]))
     lines.extend(_format_draft(plan["draft"]))
+    grid = plan["drawdown"]
+    lines.append(f"drawdown: {grid['ends']} ends by {grid['picks']} picks")
     for warning in plan["warnings"]:
         lines.append(f"warning: {warning}")
     return "\n".join(lines)

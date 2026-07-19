@@ -1,6 +1,7 @@
 """Build a warp plan from a project object."""
 
 from heddle.draft import draft, odd_plain_warning
+from heddle.drawdown import drawdown_rows
 from heddle.reed import reed_choices
 from heddle.shrink import finished_cloth, half_size_warning
 from heddle.threading import thread_ends
@@ -36,6 +37,9 @@ def plan_warp(project):
         warnings.append(shed)
     take_up = _rates(project, "takeUp")
     shrinkage = _rates(project, "shrinkage")
+    threading = thread_ends(ends, project["shafts"], project.get("threading", "straight"))
+    cloth = draft(project["shafts"], weave)
+    rows = drawdown_rows(threading["repeat"], cloth["lifts"])
     finished = finished_cloth(project["widthIn"], project["lengthIn"], take_up, shrinkage)
     for axis, on_loom, done in (
         ("width", project["widthIn"], finished["width_in"]),
@@ -58,8 +62,9 @@ def plan_warp(project):
         "pounds": pounds(yards, yarn["yards_per_pound"]),
         "reeds": reed_choices(project["epi"]),
         "shafts": project["shafts"],
-        "threading": thread_ends(ends, project["shafts"], project.get("threading", "straight")),
-        "draft": draft(project["shafts"], weave),
+        "threading": threading,
+        "draft": cloth,
+        "drawdown": {"ends": len(rows[0]), "picks": len(rows), "rows": rows},
         "finished": finished,
         "warnings": warnings,
     }
