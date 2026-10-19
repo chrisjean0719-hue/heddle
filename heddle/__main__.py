@@ -4,16 +4,21 @@ import json
 import sys
 from pathlib import Path
 
+from heddle.compare import compare_plans, format_compare
 from heddle.drawdown import drawdown_svg
 from heddle.format import format_plan
 from heddle.plan import PlanError, plan_warp
 
-USAGE = "Usage: python -m heddle plan <project.json>\n       python -m heddle draw <project.json> [--out directory]"
+USAGE = (
+    "Usage: python -m heddle plan <project.json>\n"
+    "       python -m heddle draw <project.json> [--out directory]\n"
+    "       python -m heddle compare <project.json> <project.json>"
+)
 
 
 def main(argv=None):
     args = list(sys.argv[1:] if argv is None else argv)
-    if not args or args[0] not in ("plan", "draw"):
+    if not args or args[0] not in ("plan", "draw", "compare"):
         print(USAGE, file=sys.stderr)
         return 2
     if args[0] == "plan":
@@ -21,6 +26,11 @@ def main(argv=None):
             print(USAGE, file=sys.stderr)
             return 2
         return _print_plan(args[1])
+    if args[0] == "compare":
+        if len(args) != 3:
+            print(USAGE, file=sys.stderr)
+            return 2
+        return _compare(args[1], args[2])
     return _draw(args[1:])
 
 
@@ -34,17 +44,35 @@ def _load(path):
         return None, f"Invalid JSON in {file}: {error}"
 
 
-def _print_plan(path):
+def _plan(path):
     project, error = _load(path)
+    if error:
+        return None, error
+    try:
+        return plan_warp(project), None
+    except PlanError as error:
+        return None, str(error)
+
+
+def _print_plan(path):
+    plan, error = _plan(path)
     if error:
         print(error, file=sys.stderr)
         return 1
-    try:
-        plan = plan_warp(project)
-    except PlanError as error:
-        print(error, file=sys.stderr)
-        return 1
     print(format_plan(plan))
+    return 0
+
+
+def _compare(left_path, right_path):
+    left, left_error = _plan(left_path)
+    if left_error:
+        print(f"{left_path}: {left_error}", file=sys.stderr)
+        return 1
+    right, right_error = _plan(right_path)
+    if right_error:
+        print(f"{right_path}: {right_error}", file=sys.stderr)
+        return 1
+    print(format_compare(left, right, compare_plans(left, right)))
     return 0
 
 
@@ -59,13 +87,8 @@ def _draw(args):
         print(USAGE, file=sys.stderr)
         return 2
 
-    project, error = _load(path)
+    plan, error = _plan(path)
     if error:
-        print(error, file=sys.stderr)
-        return 1
-    try:
-        plan = plan_warp(project)
-    except PlanError as error:
         print(error, file=sys.stderr)
         return 1
 

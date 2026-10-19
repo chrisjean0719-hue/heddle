@@ -1,12 +1,6 @@
 # Roadmap
 
-Heddle plans warp ends, yarn length, a reed, a straight or point threading, a plain-weave or 2/2 twill tie-up, the finished size after take-up and shrinkage, and a drawdown of two cloth repeats. This is the fifth of six updates. About 38 hours of later work stay after those six.
-
-## Still in the six updates
-
-### Compare (update 6)
-
-Compare two plans by ends, yards, and finished width.
+Heddle plans warp ends, yarn length, a reed, a straight or point threading, a plain-weave or 2/2 twill tie-up, the finished size after take-up and shrinkage, a drawdown of two cloth repeats, and a comparison of two plans. The six updates are complete. About 38 hours remain.
 
 ## After the sixth update
 
@@ -56,4 +50,4 @@ Fail the plan when the end count is not a whole number of threading repeats, plu
 
 Offer front-to-back and back-to-front loom waste amounts, and show which one the plan used.
 
-Comparing two plans is the next piece. The plan draws the cloth, and it does not yet compare two warps.
+Warp stripes are the next piece. The plan can compare two warps, and it does not yet repeat a color sequence across the ends.
